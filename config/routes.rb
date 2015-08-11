@@ -1,19 +1,14 @@
 Rails.application.routes.draw do
   get 'welcome/index'
 
-  get 'tasks/index'
-
-  get 'tasks/show/:id' => 'tasks#show'
-
-  get 'tasks/new'
-
-  get 'tasks/edit'
-
-  get 'tasks/create'
-
-  get 'tasks/update'
-
-  get 'tasks/destroy'
+  resources :tasks
+  # get 'tasks/index'
+  # get 'tasks/:id' => 'tasks#show'
+  # get 'tasks/new'
+  # get 'tasks/edit'
+  # get 'tasks/create'
+  # get 'tasks/update'
+  # get 'tasks/destroy'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
