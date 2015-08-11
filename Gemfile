@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
 # Use postgresql as the database for Active Record
@@ -46,3 +45,4 @@ end
 
 gem 'rails_12factor', group: :production
 gem 'bootstrap-sass', '~> 3.3.5.1'
+gem 'devise'
