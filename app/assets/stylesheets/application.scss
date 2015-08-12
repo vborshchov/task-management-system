@@ -42,3 +42,10 @@
   margin-bottom: 15px;
   padding: 7px 9px;
 }
+
+.hover-btn {
+  display: none;
+}
+.row:hover .hover-btn {
+  display: inline-block;
+}

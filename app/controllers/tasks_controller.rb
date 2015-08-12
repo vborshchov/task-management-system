@@ -1,15 +1,18 @@
 class TasksController < ApplicationController
-  before_action :set_task, only:[:edit, :update, :destroy]
+  before_action :set_task, only:[:edit, :update, :destroy, :show]
 
   def index
     @tasks = current_user ? current_user.tasks : (redirect_to root_path)
   end
 
   def show
-    if current_user
-      @task = Task.find(params[:id]) 
-    else
-      redirect_to root_path
+    respond_to do |format|
+      if current_user && user_signed_in?
+        format.html { @task = Task.find(params[:id]) }
+        format.js{}
+      else
+        format.html { redirect_to root_path, notice: 'Please Log in or Sign Up' }
+      end
     end
   end
 
@@ -29,7 +32,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.user = current_user
     if @task.save
-      redirect_to @task, notice: 'Завдання було успішно створено'
+      redirect_to @task, notice: 'The task was successfully created'
     else
       render :new
     end
@@ -37,28 +40,31 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to @task, notice: 'Завдання було успішно оновлено'
+      redirect_to @task, notice: 'The task was successfully updated'
     else
       render :edit
     end
   end
 
+  def delete
+    @task = current_user.tasks.find(params[:task_id])
+  end
+
   def destroy
     if current_user == @task.user
       @task.destroy
-      redirect_to tasks_url, notice: 'Завдання було успішно видалено'
+      redirect_to tasks_url, notice: 'The task was successfully deleted'
     else
       redirect_to :back
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_task
-      @task = Task.find(params[:id])
+      @task = current_user.tasks.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
       params.require(:task).permit(:title, :description, :priority, :due_date, :active)
     end

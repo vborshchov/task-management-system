@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_new_column_to_devise_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
-    tasks_index_path
+    tasks_path
   end
 
   protected
