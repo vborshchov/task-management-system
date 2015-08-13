@@ -1,26 +1,20 @@
 class TasksController < ApplicationController
   before_action :set_task, only:[:edit, :update, :destroy, :show]
+  before_action :all_user_tasks, only:[:update, :destroy, :create]
 
   def index
     @tasks = current_user ? current_user.tasks : (redirect_to root_path)
   end
 
   def show
-    respond_to do |format|
-      if current_user && user_signed_in?
-        format.html { @task = Task.find(params[:id]) }
-        format.js{}
-      else
-        format.html { redirect_to root_path, notice: 'Please Log in or Sign Up' }
-      end
-    end
+    redirect_to root_path, notice: 'Please Log in or Sign Up' unless current_user
   end
 
   def new
     if current_user
       @task = Task.new
     else
-      redirect_to root_path
+      redirect_to root_path, notice: 'Please Log in or Sign Up'
     end
   end
 
@@ -31,17 +25,13 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.user = current_user
-    if @task.save
-      redirect_to @task, notice: 'The task was successfully created'
-    else
+    unless @task.save
       render :new
     end
   end
 
   def update
-    if @task.update(task_params)
-      redirect_to @task, notice: 'The task was successfully updated'
-    else
+    unless @task.update(task_params)
       render :edit
     end
   end
@@ -51,15 +41,14 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    if current_user == @task.user
-      @task.destroy
-      redirect_to tasks_url, notice: 'The task was successfully deleted'
-    else
-      redirect_to :back
-    end
+    @task.destroy if current_user == @task.user
   end
 
   private
+
+    def all_user_tasks
+      @tasks = current_user.tasks
+    end
 
     def set_task
       @task = current_user.tasks.find(params[:id])

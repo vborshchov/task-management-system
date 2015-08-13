@@ -4,6 +4,7 @@ $("ul.errors").html("")
     $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
   <% end %>
 <% else %>
-  $("#task-modal").modal("fade")
-  $(".task-index").html("<%= j (render @tasks) %>")
+  $(".task-index").html("<%= j render @tasks, locals: {task: @task} %>")
+  $("#task-modal").modal("hide")
+  $('.alert').remove()
 <% end %>

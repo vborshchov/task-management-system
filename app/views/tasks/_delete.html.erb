@@ -6,6 +6,6 @@
 Are you sure you wish to delete <b><%= @task.title %></b>?
 </div>
 <div class="modal-footer">
-  <%= link_to "Yes, Delete This Task", task_path(@task.id), method: :delete, remote: true, class: "btn btn-danger" %>
+  <%= link_to "Yes, Delete This Task", task_path(@task), method: :delete, remote: true, class: "btn btn-danger" %>
   <%= link_to "No, Please Don't", "#", class: "btn", data: { dismiss: "modal" } %>
 </div>

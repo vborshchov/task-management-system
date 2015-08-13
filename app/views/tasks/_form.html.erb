@@ -1,15 +1,15 @@
-<%= form_for @task, remote: true, html: { class: "form-horizontal", style: "display:inline;" } do |f| %>
+<%= form_for @task, remote: true, html: { class: "form-horizontal", style: "display:inline;"} do |f| %>
   <div class="modal-body">
     <ul class="errors"></ul>
 
     <div class="control-group">
-      <%= f.label :title, class:"control-label" %>
+      <%= f.label :title, class: "control-label" %>
       <div class="controls">
-        <%= f.text_field :title %>
+        <%= f.text_field :title  %>
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :description, class:"control-label" %>
+      <%= f.label :description, class: "control-label" %>
       <div class="controls">
         <%= f.text_area :description %>
       </div>
