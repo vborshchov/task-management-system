@@ -4,7 +4,8 @@ $("ul.errors").html("")
     $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
   <% end %>
 <% else %>
-  $(".task-index").html("<%= j render @tasks, locals: {task: @task} %>")
-  $("#task-modal").modal("hide")
   $('.alert').remove()
+  $("#task-modal").modal("hide")
+  $(".task-index").html("<%= j render @tasks, locals: {task: @task} %>")
+  $('.isotope').isotope('reloadItems')
 <% end %>

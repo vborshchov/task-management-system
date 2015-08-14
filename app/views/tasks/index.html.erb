@@ -1,9 +1,32 @@
 <div class="container">
   <div class="well">
-    <%= link_to "New task", new_task_path, remote: true, class: "btn btn-primary" %>
+    <div class="col-sm-2">
+      <%= link_to "New task", new_task_path, remote: true, class: "btn btn-primary" %>
+    </div>
+    <div class="col-md-2 col-sm-12">
+      <div class="col-sm-6 col-xs-6">
+        <h3>Filter</h3>
+        <div id="filters" class="btn-group">
+          <button class="btn active" data-filter="*">show all</button>
+          <button class="btn" data-filter=".active">active</button>
+          <button class="btn" data-filter=".completed">completed</button>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xs-6">
+        <h3>Sort</h3>
+        <div id="sorts" class="btn-group">
+          <button class="btn active" data-sort-by="original-order">original order</button>
+          <button class="btn" data-sort-by="title">title</button>
+          <button class="btn" data-sort-by="priority">priority</button>
+          <button class="btn" data-sort-by="due_date">due date</button>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="task-index">
-    <%= render @tasks %>
+  <div class="col-md-10 col-sm-12">
+    <div class="task-index isotope">
+      <%= render @tasks %>
+    </div>
   </div>
 </div>
 <div class="modal fade" id="task-modal" role="dialog">
