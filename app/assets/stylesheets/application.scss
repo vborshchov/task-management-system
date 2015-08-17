@@ -43,8 +43,6 @@
   padding: 7px 9px;
 }
 
-
-
 .task-index {
   background: white;
   max-width: 1200px;
@@ -70,6 +68,10 @@
   border-bottom: 1px solid;
 }
 
+.row {
+  padding-top: 60px;
+}
+
 .task > * {
   display: inline-block;
   padding: 4px 4px;
@@ -79,23 +81,24 @@
 .hover-btn {
   display: none;
 }
-.task:hover .hover-btn {
-  display: inline-block;
-  float: right;
-}
-
-.task {
-  .title {
+.task:hover {
+  background-color: #F5F5F5;
+  .hover-btn {
+    display: inline-block;
+    float: right;
     border: none;
   }
-  .edit {
-    width: 10%;
-  }
-  .delete {
-    width: 10%;
-  }
 }
 
-.completed {
-  color: grey !importantl;
+.task .title {
+  border: none;
+}
+
+.sidebar {
+  background-color: #F5F5F5 !important;
+  padding: 10px;
+}
+
+#filters, #sorts{
+  list-style-type: none;  
 }

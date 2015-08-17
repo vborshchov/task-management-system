@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   before_action :all_user_tasks, only:[:update, :destroy, :create]
 
   def index
-    @tasks = current_user ? current_user.tasks : (redirect_to root_path)
+    @tasks = current_user ? current_user.tasks.order('updated_at DESC') : (redirect_to root_path)
   end
 
   def show
@@ -25,9 +25,11 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.user = current_user
-    unless @task.save
-      render :new
-    end
+    @task.save if current_user
+    # unless @task.save
+    #   render :new
+    # end
+    # @task
   end
 
   def update

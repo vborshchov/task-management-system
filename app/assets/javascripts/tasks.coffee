@@ -10,11 +10,11 @@ ready = ->
   # init Isotope
   $container = $('.isotope').isotope(
     itemSelector: '.task'
-    layoutMode: 'fitRows'
+    layoutMode: 'vertical'
     getSortData:
       title: '.title'
       priority: '[data-priority] parseInt'
-      due_date: '[data-date]')
+      date: '[data-date]')
 
   # bind filter button click
   $('#filters').on 'click', 'button', ->
@@ -38,12 +38,5 @@ ready = ->
     return
   return
 
-reload_tasks = undefined
-
-reload_tasks = ->
-  $('.modal-footer .btn:first').on 'click', 'button', ->
-    $('.isotope').isotope('reloadItems')
-
 $(document).ready ready
-$(document).on 'page:load', ready
-$(document).on 'page:change', reload_tasks
+$(document).on 'page:change', ready

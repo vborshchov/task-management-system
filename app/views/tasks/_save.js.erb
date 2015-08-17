@@ -6,6 +6,9 @@ $("ul.errors").html("")
 <% else %>
   $('.alert').remove()
   $("#task-modal").modal("hide")
-  $(".task-index").html("<%= j render @tasks, locals: {task: @task} %>")
-  $('.isotope').isotope('reloadItems')
+  $('.isotope').isotope({transitionDuration: 0});
+  $('.isotope').isotope( 'remove', $('.task') )
+  var $task = $('<%= j render @tasks %>')
+  $('.isotope').append($task).isotope('appended', $task)
+  $('.isotope').isotope({transitionDuration: '0.4s'});
 <% end %>

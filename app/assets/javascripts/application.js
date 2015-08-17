@@ -14,6 +14,5 @@
 //= require jquery.turbolinks
 //= require bootstrap-sprockets
 //= require jquery_ujs
-//= isotope.pkgd.min
 //= require turbolinks
 //= require_tree .

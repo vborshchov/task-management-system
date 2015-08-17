@@ -7,42 +7,36 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <nav class="navbar navbar-inverse navbar-default">
-    <div class="container">
+  <div class="navbar navbar-static navbar-default navbar-fixed-top">
+    <div class="container-fluid">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+        <% if content_for? :user_menu %>
+          <%= yield :user_menu %>
+        <% end %>
         <%= link_to "Task management system", root_path, class: "navbar-brand" %>
       </div>
-      <div id="navbar" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav pull-right">
-          <% if user_signed_in? %>
-            <li class="navbar-brand"> Welcome, <%= current_user.first_name %> <%= current_user.last_name %> </li>
-            <!-- <li> <%= link_to "My tasks", tasks_path %></li> -->
-            <li> <%= link_to "Log Out", destroy_user_session_path, method: :delete %> </li>
-          <% else %>
-            <li> <%= link_to "Log in", new_user_session_path %></li> 
-            <li> <%= link_to "Sign Up", new_user_registration_path %> </li>
-          <% end %>
-        </ul>
-      </div><!--/.nav-collapse -->
+      <button type="button" class="navbar-toggle toggle-right" data-toggle="sidebar" data-target=".sidebar-right">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
     </div>
-  </nav>
-
-  <% if notice %>
-    <p class="alert alert-success"><%= notice %></p>
-  <% end %>
-  <% if alert %>
-    <p class="alert alert-danger"><%= alert %></p>
-  <% end %>
-
-  <div class="container">
-    <%= yield %>
   </div>
-
+  <div class="container-fluid">
+    <div class="row">
+      <%= yield %>
+    </div>
+    <div class="col-xs-5 col-sm-2 col-md-2 sidebar sidebar-right sidebar-animate">
+      <ul class="nav navbar-stacked">
+        <% if user_signed_in? %>
+          <li> <%= link_to "My tasks", tasks_path %></li>
+          <li> <%= link_to "Log Out", destroy_user_session_path, method: :delete %> </li>
+        <% else %>
+          <li> <%= link_to "Log in", new_user_session_path %></li> 
+          <li> <%= link_to "Sign Up", new_user_registration_path %> </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </body>
 </html>

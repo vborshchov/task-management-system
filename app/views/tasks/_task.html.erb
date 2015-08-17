@@ -1,6 +1,7 @@
-<div class="task <%= task.active ? "active" : "completed"  %>" data-priority="<%= task.priority %>" data-date="<%= task.due_date %>" >
+<div class="task <%= task.active ? "active" : "completed"  %>" data-priority="<%= task.priority %>" data-date="<%= task.due_date %>">
   <!-- place checkbox here -->
-  <%= link_to "#{task.title}", task_path(task), class: "btn btn-defaul btn-lg title", data: {toggle: "modal", target: "#task-modal"}, remote: true%>
+  <%= link_to "#{task.title}", task_path(task), class: "#{'text-muted' unless task.active} btn btn-defaul btn-lg title", data: {toggle: "modal", target: "#task-modal"}, remote: true%>
   <%= link_to "Delete", task_delete_path(task), remote: true, class: "btn btn-lg btn-danger hover-btn delete" %>
   <%= link_to "Edit", edit_task_path(task), remote: true, class: "btn btn-lg hover-btn edit" %>
 </div>
+
