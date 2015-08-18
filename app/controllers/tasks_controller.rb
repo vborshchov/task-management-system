@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
-  before_action :set_task, only:[:edit, :update, :destroy, :show]
+  before_action :set_task, only:[:edit, :update, :destroy, :show, :toggle]
   before_action :all_user_tasks, only:[:update, :destroy, :create]
 
   def index
-    @tasks = current_user ? current_user.tasks.order('updated_at DESC') : (redirect_to root_path)
+    @tasks = current_user ? current_user.tasks.order('created_at DESC') : (redirect_to root_path)
   end
 
   def show
@@ -46,6 +46,14 @@ class TasksController < ApplicationController
     @task.destroy if current_user == @task.user
   end
 
+  def toggle
+    puts params[:active]
+    if @task.update_attributes(active: params[:active])
+      # ... update successful
+    else
+      # ... update failed
+    end
+  end
   private
 
     def all_user_tasks

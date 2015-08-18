@@ -1,0 +1,19 @@
+var input_id  = "#is_completed_task_" + <%= @task.id.to_s %>
+var title = $("a[href$=\"/" + <%= @task.id.to_s %> + "\"]");
+var text = title.text();
+var task = title.parent();
+
+if (task.hasClass('active')) {
+  task.removeClass('active');
+  task.addClass('completed');
+  title.html('<s class=\"text-muted\">' + text + '<s>');
+  task.find($(input_id)).prop('checked', true);
+} else if (task.hasClass('completed')) {
+  task.removeClass('completed');
+  task.addClass('active');
+  title.text(text);
+  task.find($(input_id)).prop('checked', false);
+};
+$('.isotope').isotope()
+
+// $('a[href$="13"]').parent().children('#is_completed_task_13').prop('checked', false)

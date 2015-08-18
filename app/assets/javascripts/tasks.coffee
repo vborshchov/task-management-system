@@ -28,6 +28,30 @@ ready = ->
     $container.isotope sortBy: sortByValue
     return
 
+  $('#check_all').on 'click', ->
+    $check_box = $('input[type=checkbox]')
+    $check_box.each ->
+      if $(this).parent().css('display') == "block"
+        $(this).prop('checked', true)
+      return
+    return
+
+  $('#uncheck_all').on 'click', ->
+    $check_box = $('input[type=checkbox]')
+    $check_box.each ->
+      if $(this).parent().css('display') == "block"
+        $(this).prop('checked', false)
+      return
+    return
+
+  $('#delete_selected').on 'click', ->
+    $check_box = $('input[type=checkbox]')
+    $check_box.each ->
+      if $(this).prop('checked') && ($(this).parent().css('display') == "block")
+        $('.isotope').isotope('remove', $(this).parent()).isotope('layout')
+      return
+    return
+
   # change active class on buttons
   $('.btn-group').each (i, buttonGroup) ->
     $buttonGroup = $(buttonGroup)
@@ -39,4 +63,4 @@ ready = ->
   return
 
 $(document).ready ready
-$(document).on 'page:change', ready
+$(document).on 'page:load', ready

@@ -1,10 +1,17 @@
+// find checked tasks
+$('input[type="checkbox"]').each(function(){
+  if ($(this).prop('checked')){
+
+  }
+});
+
 $("ul.errors").html("")
 <% if @task.errors.any? %>
   <% @task.errors.full_messages.each do |message| %>
     $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
   <% end %>
 <% else %>
-  $('.alert').remove()
+  $('.info').remove()
   $("#task-modal").modal("hide")
   $('.isotope').isotope({transitionDuration: 0});
   $('.isotope').isotope( 'remove', $('.task') )
@@ -12,3 +19,5 @@ $("ul.errors").html("")
   $('.isotope').append($task).isotope('appended', $task)
   $('.isotope').isotope({transitionDuration: '0.4s'});
 <% end %>
+
+// recheck all tasks
