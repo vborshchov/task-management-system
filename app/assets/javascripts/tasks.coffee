@@ -28,26 +28,30 @@ ready = ->
     $container.isotope sortBy: sortByValue
     return
 
-  $('#check_all').on 'click', ->
-    $check_box = $('input[type=checkbox]')
-    $check_box.each ->
+  toggleCheckboxes = (selector, bool) ->
+    check_box = selector
+    check_box.each ->
       if $(this).parent().css('display') == "block"
-        $(this).prop('checked', true)
+        $(this).prop('checked', bool)
       return
     return
 
+  $('#check_all').on 'click', ->
+    toggleCheckboxes $('input[id^="task_ids"]'), true
+    
   $('#uncheck_all').on 'click', ->
-    $check_box = $('input[type=checkbox]')
-    $check_box.each ->
-      if $(this).parent().css('display') == "block"
-        $(this).prop('checked', false)
-      return
-    return
+    toggleCheckboxes $('input[id^="task_ids"]'), false
+    
 
   $('#delete_selected').on 'click', ->
-    $check_box = $('input[type=checkbox]')
+    $check_box = $('input[id^="task_ids"]')
     $check_box.each ->
       if $(this).prop('checked') && ($(this).parent().css('display') == "block")
+        $.ajax
+          url: '/tasks/' + $(this).attr('id').split('_')[2]
+          type: 'DELETE'
+          data:
+            id: $(this).attr('id').split('_')[2]
         $('.isotope').isotope('remove', $(this).parent()).isotope('layout')
       return
     return
