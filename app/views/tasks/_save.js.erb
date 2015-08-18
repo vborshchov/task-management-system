@@ -5,7 +5,7 @@ $('input[id^="task_ids"]').each(function(){
     checked_tasks.push("#" + $(this).attr('id'))
   }
 });
-alert(checked_tasks);
+
 $("ul.errors").html("");
 <% if @task.errors.any? %>
   <% @task.errors.full_messages.each do |message| %>
