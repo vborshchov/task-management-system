@@ -1,0 +1,12 @@
+$('#datepicker').datepicker({
+  format: 'yyyy-mm-dd',
+  todayBtn: true,
+  clearBtn: true,
+  keyboardNavigation: false,
+  startDate: "<%= (Date.today + 1).to_s %>"
+});
+$("#datepicker").on("changeDate", function(event) {
+    $("#task_due_date").val(
+        $("#datepicker").datepicker('getFormattedDate')
+     )
+});
