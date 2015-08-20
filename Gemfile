@@ -43,6 +43,7 @@ group :development, :test do
   gem 'spring'
 end
 
+gem 'quiet_assets', group: :development
 gem 'rails_12factor', group: :production
 gem 'bootstrap-sass', '~> 3.3.5.1'
 gem 'devise'

@@ -26,16 +26,10 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.user = current_user
     @task.save if current_user
-    # unless @task.save
-    #   render :new
-    # end
-    # @task
   end
 
   def update
-    unless @task.update(task_params)
-      render :edit
-    end
+    @task.update(task_params) if current_user
   end
 
   def delete
