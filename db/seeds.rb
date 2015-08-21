@@ -55,19 +55,19 @@ Task.create!([
 
 # Tasks for second user
 Task.create!([
-  {title: "Play chess", description: "I like play chess", priority: 1, user_id: 1, due_date: "2015-09-10"},
-  {title: "Play football", description: "I like play football", priority: 2, user_id: 1, due_date: "2015-10-25", active: false},
-  {title: "Play poker", description: "I like play poker", priority: 3, user_id: 1, due_date: "2015-10-25"},
-  {title: "Play basketball", description: "I like play basketball", priority: 4, user_id: 1, due_date: "2015-08-29", active: false},
-  {title: "Play baseball", description: "I like play baseball", priority: 5, user_id: 1, due_date: "2016-01-01"},
-  {title: "Read books", description: "I like read books", priority: 1, user_id: 1, due_date: "2015-10-10", active: false},
-  {title: "Read magazines", description: "I like read magazines", priority: 2, user_id: 1, due_date: "2015-08-19"},
-  {title: "Read newspapers", description: "I like read newspapers", priority: 3, user_id: 1, due_date: "2015-10-12", active: false},
-  {title: "Read tables", description: "I like read tables", priority: 4, user_id: 1, due_date: "2015-11-03"},
-  {title: "Read signs", description: "I like read signs", priority: 3, user_id: 1, due_date: "2015-12-13"},
-  {title: "Watch films", description: "I like watch films", priority: 2, user_id: 1, due_date: "2015-10-13", active: false},
-  {title: "Write a poem", description: "I like write poems", priority: 6, user_id: 1, due_date: "2016-01-23"},
-  {title: "Eat ice-cream", description: "I like ice-cream", priority: 1, user_id: 1, due_date: "2015-12-01", active: false},
-  {title: "Make a party", description: "I like read parties", priority: 5, user_id: 1, due_date: "2015-12-31"},
-  {title: "Tell a story to my neighbour", description: "I like tell stories", priority: 100, user_id: 1, due_date: "2016-01-31"}
+  {title: "Play chess", description: "I like play chess", priority: 1, user_id: 2, due_date: "2015-09-10"},
+  {title: "Play football", description: "I like play football", priority: 2, user_id: 2, due_date: "2015-10-25", active: false},
+  {title: "Play poker", description: "I like play poker", priority: 3, user_id: 2, due_date: "2015-10-25"},
+  {title: "Play basketball", description: "I like play basketball", priority: 4, user_id: 2, due_date: "2015-08-29", active: false},
+  {title: "Play baseball", description: "I like play baseball", priority: 5, user_id: 2, due_date: "2016-01-01"},
+  {title: "Read books", description: "I like read books", priority: 1, user_id: 2, due_date: "2015-10-10", active: false},
+  {title: "Read magazines", description: "I like read magazines", priority: 2, user_id: 2, due_date: "2015-08-19"},
+  {title: "Read newspapers", description: "I like read newspapers", priority: 3, user_id: 2, due_date: "2015-10-12", active: false},
+  {title: "Read tables", description: "I like read tables", priority: 4, user_id: 2, due_date: "2015-11-03"},
+  {title: "Read signs", description: "I like read signs", priority: 3, user_id: 2, due_date: "2015-12-13"},
+  {title: "Watch films", description: "I like watch films", priority: 2, user_id: 2, due_date: "2015-10-13", active: false},
+  {title: "Write a poem", description: "I like write poems", priority: 6, user_id: 2, due_date: "2016-01-23"},
+  {title: "Eat ice-cream", description: "I like ice-cream", priority: 1, user_id: 2, due_date: "2015-12-01", active: false},
+  {title: "Make a party", description: "I like read parties", priority: 5, user_id: 2, due_date: "2015-12-31"},
+  {title: "Tell a story to my neighbour", description: "I like tell stories", priority: 100, user_id: 2, due_date: "2016-01-31"}
 ])
