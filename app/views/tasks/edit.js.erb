@@ -3,3 +3,4 @@ $("#task-modal .modal-content").html("<%= j (render 'edit') %>")
 $("#task-modal").modal("show")
 <%= render 'datepicker' %>
 $('#datepicker').datepicker('update', "<%= @task.due_date %>")
+<%= render 'validator' %>

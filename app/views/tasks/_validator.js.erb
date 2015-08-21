@@ -1,0 +1,9 @@
+window.ParsleyValidator.addValidator('futuredate',
+  function (value, requirement) {
+     return value > requirement;
+  }, 32)
+  .addMessage('en', 'futuredate', 'This date is not in the future.');
+$('#task_title').attr({"data-parsley-required": "true", "data-parsley-required-message": "Title can't be blank"});
+$('#task_priority').attr("data-parsley-type", "number");
+$('#task_due_date').attr("data-parsley-futuredate", "<%= Date.today.to_s %>");
+$('form').parsley();
