@@ -8,7 +8,7 @@ $('input[id^="task_ids"]').each(function(){
 });
 
 $("ul.errors").html("");
-<% if @task.errors.any? %>
+<% if @task && @task.errors.any? %>
   <% @task.errors.full_messages.each do |message| %>
     $("ul.errors").append($("<li />").html("<%= message.html_safe %>"));
   <% end %>
