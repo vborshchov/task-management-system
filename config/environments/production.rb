@@ -76,4 +76,14 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.mandrillapp.com',
+    port:                 587,
+    enable_starttls_auto: true,
+    user_name:            ENV["MANDRILL_USERNAME"],
+    password:             ENV["MANDRILL_APIKEY"],
+    authentication:       'login',
+    domain:               'tms-for-activebridge.herokuapp.com'
+  }
 end
