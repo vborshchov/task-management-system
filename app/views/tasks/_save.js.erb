@@ -1,3 +1,4 @@
+$('.main .pull-right').remove();
 // find checked tasks
 var checked_tasks = []
 $('input[id^="task_ids"]').each(function(){
@@ -27,3 +28,7 @@ $("ul.errors").html("");
 checked_tasks.forEach(function(item, i, arr) {
   $(item).prop('checked', true)
 });
+
+$('.task-index').before('<%= flash_messages %>');
+<%= flash.clear %>
+$('.main .pull-right').fadeOut(10000);
