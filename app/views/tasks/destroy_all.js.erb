@@ -1,0 +1,27 @@
+$('.main .pull-right').remove();
+// find checked tasks
+var checked_tasks = []
+$('input[id^="task_ids"]').each(function(){
+  if ($(this).prop('checked')){
+    checked_tasks.push("#" + $(this).attr('id'))
+  }
+});
+
+
+$("#task-modal").modal("hide");
+$('.isotope').isotope({transitionDuration: 0});
+$('.isotope').isotope( 'remove', $('.task') );
+var $task = $('<%= j render @tasks.order('created_at DESC') %>')
+$('.isotope').append($task).isotope('reloadItems');
+// $('.isotope').append($task).isotope('appended', $task);
+$('.isotope').isotope({transitionDuration: 0});
+$('.isotope').isotope({transitionDuration: '0.4s'});
+
+// recheck all tasks
+checked_tasks.forEach(function(item, i, arr) {
+  $(item).prop('checked', true)
+});
+
+$('.task-index').before('<%= flash_messages %>');
+// <%= flash.clear %>
+$('.main .pull-right').fadeOut(8000);

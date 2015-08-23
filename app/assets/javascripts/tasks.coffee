@@ -44,17 +44,16 @@ ready = ->
     
 
   $('#delete_selected').on 'click', ->
-    $check_box = $('input[id^="task_ids"]')
-    $check_box.each ->
-      if $(this).prop('checked') && ($(this).parent().css('display') == "block")
-        $('.isotope').isotope('remove', $(this).parent())
-        $.ajax
-          url: '/tasks/' + $(this).attr('id').split('_')[2]
-          type: 'DELETE'
-          data:
-            id: $(this).attr('id').split('_')[2]
-      return
-    $('.isotope').isotope('layout')
+    $visible_selected_check_boxes = $.grep $('input[id^="task_ids"]'), (e) ->
+      $(e).prop('checked') and $(e).parent().css('display') == 'block'
+    $ids = []
+    $visible_selected_check_boxes.forEach (e) ->
+      $ids.push($(e).attr('id').split('_')[2])
+    $.ajax
+      url: '/tasks/destroy_all'
+      type: 'DELETE'
+      data:
+        id: $ids
     return
 
   # change active class on buttons

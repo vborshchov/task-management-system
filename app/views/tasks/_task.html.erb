@@ -1,8 +1,8 @@
 <div class="task <%= task.active ? "active" : "completed"  %>" data-priority="<%= task.priority %>" data-date="<%= task.due_date %>">
   <%= check_box_tag "task_ids[#{task.id}]", task.id %>
   <%= link_to raw((task.active ? '' : '<s class="text-muted">') + task.title + (task.active ? '' : '</s>')), task_path(task), class: "btn btn-defaul btn-lg title", data: {toggle: "modal", target: "#task-modal"}, remote: true%>
-  <%= link_to "Delete", task_delete_path(task), remote: true, class: "btn btn-lg btn-danger hover-btn delete" %>
+  <%= link_to "Delete", delete_task_path(task), remote: true, class: "btn btn-lg btn-danger hover-btn delete" %>
   <%= link_to "Edit", edit_task_path(task), remote: true, class: "btn btn-lg hover-btn edit" %>
-  <%= link_to (check_box_tag "is_completed_task[#{task.id}]", task.id, !task.active), task_toggle_path(id: task.id, task_id: task.id, active: !task.active), method: :post, remote: true, class: "btn btn-lg hover-btn" %>
+  <%= link_to (check_box_tag "is_completed_task[#{task.id}]", task.id, !task.active), toggle_task_path(task, active: !task.active), method: :post, remote: true, class: "btn btn-lg hover-btn" %>
 </div>
 

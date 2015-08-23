@@ -1,21 +1,21 @@
 class TasksController < ApplicationController
-  before_action :set_task, only:[:edit, :update, :destroy, :show, :toggle]
-  before_action :all_user_tasks, only:[:update, :destroy, :create]
+  before_action :set_task, only:[:edit, :update, :delete, :destroy, :show, :toggle]
+  before_action :all_user_tasks, only:[:update, :destroy, :destroy_all ,:create]
 
   def index
     @tasks = current_user ? current_user.tasks.order('created_at DESC') : (redirect_to root_path, alert: 'Please Log in or Sign Up')
   end
 
   def show
-    # respond_to do |format|
-    #   format.html { redirect_to root_path, alert: 'Try to use buttons on web page next time :)' }
-    #   format.js
-    # end
   end
 
   def new
     if current_user
       @task = Task.new
+      respond_to do |format|
+        format.html { redirect_to root_path, alert: 'Try to use buttons on web page next time :)' }
+        format.js
+      end
     else
       redirect_to root_path, alert: 'Please Log in or Sign Up'
     end
@@ -36,10 +36,16 @@ class TasksController < ApplicationController
   end
 
   def delete
-    if current_user == Task.find(params[:task_id]).user
-      @task = current_user.tasks.find(params[:task_id])
-    else
-      redirect_to root_path, alert: 'Please Log in or Sign Up'
+  end
+
+  def destroy_all
+    if Task.find(params[:id]).all? { |t| t.user == current_user }
+      Task.destroy(params[:id])
+      if params[:id].size > 1
+        flash[:alert] = "All tasks were deleted successfully."
+      else
+        flash[:alert] = "The task was deleted successfully."
+      end
     end
   end
 

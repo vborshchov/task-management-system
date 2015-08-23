@@ -13,7 +13,6 @@ $("ul.errors").html("");
     $("ul.errors").append($("<li />").html("<%= message.html_safe %>"));
   <% end %>
 <% else %>
-  $('.info').remove();
   $("#task-modal").modal("hide");
   $('.isotope').isotope({transitionDuration: 0});
   $('.isotope').isotope( 'remove', $('.task') );

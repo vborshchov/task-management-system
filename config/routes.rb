@@ -2,8 +2,13 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   resources :tasks do
-    get "delete"
-    post "toggle"
+    member do
+      get 'delete'
+      post 'toggle'
+    end
+    collection do
+      delete 'destroy_all'
+    end
   end
 
   devise_for :users
