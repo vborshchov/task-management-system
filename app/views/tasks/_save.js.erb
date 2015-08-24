@@ -18,7 +18,6 @@ $("ul.errors").html("");
   $('.isotope').isotope( 'remove', $('.task') );
   var $task = $('<%= j render @tasks.order('created_at DESC') %>')
   $('.isotope').append($task).isotope('reloadItems');
-  // $('.isotope').append($task).isotope('appended', $task);
   $('.isotope').isotope({transitionDuration: 0});
   $('.isotope').isotope({transitionDuration: '0.4s'});
 <% end %>

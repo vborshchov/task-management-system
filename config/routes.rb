@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       post 'toggle'
     end
     collection do
-      delete 'destroy_all'
+      delete 'destroy', as: :destroy
     end
   end
 

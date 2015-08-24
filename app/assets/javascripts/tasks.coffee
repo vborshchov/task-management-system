@@ -53,7 +53,7 @@ ready = ->
           $visible_selected_check_boxes.forEach (e) ->
             $ids.push($(e).attr('id').split('_')[2])
           $.ajax
-            url: '/tasks/destroy_all'
+            url: '/tasks/destroy'
             type: 'DELETE'
             data:
               id: $ids
