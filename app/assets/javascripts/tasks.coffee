@@ -46,14 +46,18 @@ ready = ->
   $('#delete_selected').on 'click', ->
     $visible_selected_check_boxes = $.grep $('input[id^="task_ids"]'), (e) ->
       $(e).prop('checked') and $(e).parent().css('display') == 'block'
-    $ids = []
-    $visible_selected_check_boxes.forEach (e) ->
-      $ids.push($(e).attr('id').split('_')[2])
-    $.ajax
-      url: '/tasks/destroy_all'
-      type: 'DELETE'
-      data:
-        id: $ids
+    unless $visible_selected_check_boxes.length == 0
+      bootbox.confirm 'Are you sure want to delete ' + $visible_selected_check_boxes.length + ' task(s)?', (result) ->
+        if result == true
+          $ids = []
+          $visible_selected_check_boxes.forEach (e) ->
+            $ids.push($(e).attr('id').split('_')[2])
+          $.ajax
+            url: '/tasks/destroy_all'
+            type: 'DELETE'
+            data:
+              id: $ids
+        return
     return
 
   # change active class on buttons
