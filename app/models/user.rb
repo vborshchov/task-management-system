@@ -6,6 +6,6 @@ class User < ActiveRecord::Base
   has_many :tasks, dependent: :destroy
 
   def full_name
-    self.first_name + " " + self.last_name
+    [first_name, last_name].compact.reject(&:empty?).join(" ")
   end
 end
